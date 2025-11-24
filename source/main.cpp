@@ -22,7 +22,7 @@ int main() {
 	sf::Color awesome(137, 126, 248, 0);
 	//optimal ratio suuper important
 	double r = 0;
-	int index;
+	int index = 0;
 	int previous = -1;
 
 	while (window.isOpen()) {
@@ -51,12 +51,16 @@ int main() {
 					points.push_back(vertices[vertices.size() - 1]);
 					// I was originally going to use some weird formula but I found this on wikipedia
 					// https://en.wikipedia.org/wiki/Chaos_game
+					points.push_back(vertices.back());
 					if (vertices.size() % 4 == 0)
 						r = 1/(1+tan(3.1416/vertices.size()));
 					if (vertices.size() % 4 == 1 || vertices.size() % 4 == 3)
 						r = 1/(1 + (1 + 2*sin(3.1416/(2*vertices.size()))));
 					if (vertices.size() % 4 == 2)
 						r = 1/(1 + sin(3.1416/vertices.size()));
+
+					vertices.pop_back();
+					index = 0;
 
 				//std::cout << "r " << r << std::endl;
 				}
@@ -109,7 +113,7 @@ int main() {
 		for (int i = 0; i < points.size(); i++) {
 			sf::RectangleShape rectangle(sf::Vector2f(10,10));
 			rectangle.setPosition(sf::Vector2f(points[i].x, points[i].y));
-			rectangle.setFillColor(sf::Color::White);
+			rectangle.setFillColor(sf::Color::Blue);
 			rectangle.setSize(sf::Vector2f(2,2));
 			window.draw(rectangle);
 		}
