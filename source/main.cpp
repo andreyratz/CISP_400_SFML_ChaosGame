@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -101,14 +102,16 @@ int main() {
 				circle.setPosition(sf::Vector2f(vertices[i].x, vertices[i].y));
 				circle.setFillColor(sf::Color::White);
 				window.draw(circle);
+
 			}
 		}
 
 		for (int i = 0; i < points.size(); i++) {
-			sf::CircleShape circle(5.f);
-			circle.setPosition(sf::Vector2f(points[i].x, points[i].y));
-			circle.setFillColor(sf::Color::White);
-			window.draw(circle);
+			sf::RectangleShape rectangle(sf::Vector2f(10,10));
+			rectangle.setPosition(sf::Vector2f(points[i].x, points[i].y));
+			rectangle.setFillColor(sf::Color::White);
+			rectangle.setSize(sf::Vector2f(2,2));
+			window.draw(rectangle);
 		}
 
 		window.display();
